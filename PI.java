@@ -1,86 +1,38 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 import java.util.Scanner;
-
 
 public class PI {
     public static void main(String[] args) {
-
-
+        
         Scanner ler = new Scanner(System.in);
-        final int total_poltrona = 255;
-        boolean[] poltronas = new boolean[total_poltrona];
-        List<String> cpfs = new ArrayList<>();
-       
-        boolean decisao = true;
-       
-        while (decisao) {
-   
-           
-            // Todas poltronas ficam liberadas
-            for (int disponivel = 0; disponivel < poltronas.length; disponivel++) {
-            poltronas[disponivel] = true;
+        boolean running = true;
+        
+        String[] id_cpfs = new String[0];
+
+        do {
+            running = false;
+            String id_cpf_at;
+
+            System.out.println("Informe seu cpf:");
+            id_cpf_at = ler.nextLine();
+            
+            boolean cpfExists = false;
+
+            for (String cpf : id_cpfs) {
+                if (cpf.equals(id_cpf_at)) {
+                    cpfExists = true;
+                    break;
+                }
             }
-                   
-            System.out.println("O que você deseja:\n1. Fazer uma nova compra\n2. Olhar cadastro\n3. Poltronas disponíveis");
-            System.out.print("Escolha uma opção: ");
-            String escolher = ler.next();
-
-
-            switch (escolher) {
-
-
-                case "1":
-                    System.out.println("Insira o seu cpf: ");
-                    String cpf = ler.next();
-                    cpfs.add(cpf);
-                    System.out.println("CPF ADICIONADO COM SUCESSO!\n");
-                    System.out.println("CPF: " + cpfs);
-
-
-   
-                    // Escolha da poltrona
-                    System.out.println("Insira um valor para escolher a poltrona: ");
-                    int escolha = ler.nextInt();
-                   
-                    //Validar a poltrona
-                    while (poltronas[escolha] == false) {
-                        System.out.println("A poltrona escolhida já estava reservada\nEscolha uma nova poltrona");
-                        System.out.println("Escolha outra poltrona: ");
-                        escolha = ler.nextInt();
-                    }
-                   
-                    if (escolha >= 0 && escolha < poltronas.length) {
-                        if (poltronas[escolha]) {
-                            poltronas[escolha] = false;
-                            System.out.println("A poltrona foi reservada com sucesso");
-                        }
-                    }
-                    break;
-
-
-                case "2":
-                    System.out.println("CPFs cadastrados:");
-                    for (String cpfCadastrado : cpfs) {
-                        System.out.println("CPF: " + cpfCadastrado);
-                    }
-                    break;
-
-
-                case "3":
-                    // Printar as poltronas disponíveis
-                    for (int i = 0; i < poltronas.length; i++) {
-                        if (i == 0 ) {
-                            System.out.println("poltronas da plateia A :");
-                        } else {
-                           
-                        System.out.println("Poltrona " + i + ": " +
-                                (poltronas[i] ? "Disponivel" : "Reservada"));
-                        // Determinar se a poltrona está na plateia A
-                        }
-                    }
-                    break;
+            
+            if (cpfExists) {                            
+                System.out.println("CPF já existe");
+            } else {
+                System.out.println("CPF não existe");
+                id_cpfs = Arrays.copyOf(id_cpfs, id_cpfs.length + 1);
+                id_cpfs[id_cpfs.length - 1] = id_cpf_at;
             }
-        }
+            
+        } while (running);
     }
 }

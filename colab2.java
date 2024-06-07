@@ -1,123 +1,100 @@
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 
 public class colab2 {
-    public static void main(String[] args){
-
-
-        final int total_poltronas = 255;
-        boolean[] poltronas = new boolean[total_poltronas];
-        Arrays.fill(poltronas, true);
-        List<String> cpfs = new ArrayList<>();
-        List<String> pecas = new ArrayList<>();
-        List<String> turno = new ArrayList<>();
-        List<String> lugar = new ArrayList<>();
+    public static void main(String[] args) {
         Scanner ler = new Scanner(System.in);
-
-
+        // declaração de variáveis e matrizes
         boolean run = true;
 
+        // Matrizes e variáveis de uso atual
+        int[][][][] poltrona_A;
+        int[][][][] poltrona_B;
+        int[][][][] frisa;
+        int[][][][] camarote;
+        int[][][][] balcao_nobre;
 
-        while(run){
+        // Constantes para as dimensões dos locais
+        final int peca = 3;
+        final int period = 3;
+        final int pa_linhas = 5;
+        final int pa_coluna = 5;
+        final int pb_linha = 10;
+        final int pb_coluna = 10;
+        final int frisa_ac = 5;
+        final int frisa_id = 6;
+        final int cam_ac = 10;
+        final int cam_id = 5;
+        final int bn_linha = 5;
+        final int bn_coluna = 10;
 
-
-            //Liberar todas poltronas
-            for(int disponivel = 0; disponivel < poltronas.length; disponivel ++){
-                poltronas[disponivel] = true;
-            }
-
-
-            System.out.println("\no que você deseja fazer?");
-            System.out.println("1. Compar um novo ingresso");
-            System.out.println("2. Ver cadastros realizados");
-            System.out.println("3. Poltronas disponíveis");
-            System.out.print("Digite aqui:");
-            int menu = ler.nextInt();
-
-
-            switch(menu){
+        do {
+            System.out.println("O que deseja fazer? \n1. Comprar passagens\n2. Ver passagens adquiridas");
+            int id_op = ler.nextInt();
+            switch (id_op) {
                 case 1:
-                    //Informação do CPF
-                    System.out.print("Inisira o seu CPF: ");
-                    String cpf = ler.next();
-                    cpfs.add(cpf);
+                    boolean run_esc_pc = true;
+                    boolean run_esc_turn = true;
+                    boolean run_esc_lcl = true;
 
-
-                    //Escolha da peça
-                    System.out.println("\n1. Bela e fera: ");
-                    System.out.println("2. Branca de neve: ");
-                    System.out.println("3. Lago dos cisneis: ");
-                    System.out.print("Escreva a sessão desejada: ");
-                    String peca = ler.next();
-                    pecas.add(peca);
-
-
-                    // Escolha do turno
-                    System.out.println("\n1. Manhã ");
-                    System.out.println("2. Tarde");
-                    System.out.println("3. Noite: ");
-                    System.out.print("Escreva o turno desejado: ");
-                    String M_T_N = ler.next();
-                    turno.add(M_T_N);
-
-
-                    // Escolha do local
-                    System.out.println("\n1. Classe A ");
-                    System.out.println("2. Classe B");
-                    System.out.println("3. Camarote: ");
-                    System.out.println("4. Frisa: ");
-                    System.out.println("5. Balcão Nobre: ");
-                    System.out.print("Escreva o turno desejado: ");
-                    String local = ler.next();
-                    lugar.add(local);
-
-
-                    boolean verdade = true;
-                    do{
-                        System.out.print("Insira um valor para escolher a poltrona: ");
-                        int escolha = ler.nextInt() -1;
-                                   
-                            if (poltronas[escolha] == false) {
-                            System.out.println("Poltrona ocupada\nSelecione outro lugar");
-                            escolha = ler.nextInt();
+                    do {
+                        // Escolha de peça
+                        int esc_pc;
+                        do {
+                            System.out.println("Qual peça você deseja assistir?\n1. Peça 1\n2. Peça 2\n3. Peça 3");
+                            esc_pc = ler.nextInt();
+                            if (esc_pc < 1 || esc_pc > 3) {
+                                System.out.println("Opção inválida!");
                             } else {
-                                System.out.println("Escolheu certo");
-                                verdade = false;
+                                run_esc_pc = false;
                             }
-               
-               
-                        } while(verdade);
-               
+                        } while (run_esc_pc);
 
+                        // Escolha de turno
+                        int esc_turn;
+                        do {
+                            System.out.println("Qual turno para a peça " + esc_pc + "?\n" +
+                                    "1. Manhã\n2. Tarde\n3. Noite");
+                            esc_turn = ler.nextInt();
+                            if (esc_turn < 1 || esc_turn > 3) {
+                                System.out.println("Opção inválida!");
+                            } else {
+                                run_esc_turn = false;
+                            }
+                        } while (run_esc_turn);
+
+                        // Escolha de local
+                        int esc_ln;
+                        do {
+                            System.out.println("Para qual local você deseja comprar?");
+                            // Aqui você pode adicionar a lógica para mostrar os locais disponíveis e permitir que o usuário escolha
+                            esc_ln = ler.nextInt();
+                            // Coloquei um exemplo simples apenas para continuar a lógica, substitua por sua própria lógica
+                            if (esc_ln < 1 || esc_ln > 5) {
+                                System.out.println("Opção inválida!");
+                            } else {
+                                run_esc_lcl = false;
+                            }
+                        } while (run_esc_lcl);
+
+                        // Aqui você deve adquirir a passagem com base nas escolhas do usuário
+                        System.out.println("Passagem adquirida para a peça " + esc_pc + ", turno " + esc_turn +
+                                ", local " + esc_ln);
+
+                        System.out.println("Deseja comprar mais passagens? (1 - Sim, 2 - Não)");
+                        int continuar = ler.nextInt();
+                        if (continuar == 2) {
+                            run = false;
+                        }
+                    } while (run);
+                    break;
                 case 2:
-                    // Intercalando e imprimindo as listas
-                    int max1 = Math.max(cpfs.size(), pecas.size());
-                    int max2 = Math.max(turno.size(), lugar.size());
-                    int max = Math.max(max1, max2);
-
-
-                    for (int i = 0; i < max; i++) {
-                        if (i < cpfs.size()) {
-                            System.out.println("\nCpf vinculado: " + cpfs.get(i));
-                        }
-                        if (i < pecas.size()) {
-                            System.out.println("peca desejada: " + pecas.get(i));
-                        }
-                        if (i < turno.size()) {
-                            System.out.println("Turno escolhido: " + turno.get(i));
-                        }
-                        if (i < lugar.size()) {
-                            System.out.println("Local escolhido: " + lugar.get(i));
-                        }
-                    }
-                                    }
+                    // Aqui você pode adicionar a lógica para mostrar as passagens adquiridas
+                    System.out.println("Aqui estão as passagens adquiridas.");
+                    break;
+                default:
+                    System.out.println("Opção inválida!");
+                    break;
             }
-        }
-
-
+        } while (run);
     }
-
-
+}

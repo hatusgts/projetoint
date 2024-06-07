@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class colab {
+public class colabtst {
     public static void main(String[] args){
         Scanner ler = new Scanner(System.in);
         //declaração de váriaveis e matrizes
@@ -55,6 +55,19 @@ public class colab {
             int[][][][] balcao_nobre =  new int[peca][period][bn_linha][bn_coluna];
     do{
         run =false;
+        int Id_disponA = 0;
+            for (int i = 0; i < poltrona_A[peca - 1].length; i++) {
+                for (int j = 0; j < poltrona_A[period -1][i].length; j++) {
+                    for (int k = 0; k < poltrona_A[i][j].length; k++) {
+                        for (int l = 0; l < poltrona_A[i][j][k].length; l++) {
+                            if(poltrona_A[i][j][k][l] == 0){
+                            Id_disponA = Id_disponA +1;
+                            }
+                            System.out.println("Tem " + Id_disponA);
+                        }
+                    }
+                }
+            }
         System.out.println("O que deseja fazer? \n1. Comprar passagens\n2. Ver passagens adquiridas");
         id_op = ler.nextInt();
         do{
@@ -65,8 +78,7 @@ public class colab {
                 esc_pc = ler.nextInt();
                 run_esc_pc = false;
                 switch (esc_pc) {
-                    case 1:
-                    esc_pc = esc_pc +1;              
+                    case 1:          
                     poltrona_A = new int[esc_pc][period][pa_linhas][pa_coluna];
                     poltrona_B = new int[esc_pc][period][pb_linha][pb_coluna];
                     frisa = new int[esc_pc][period][frisa_ac][frisa_id];
@@ -74,7 +86,6 @@ public class colab {
                     balcao_nobre = new int[esc_pc][period][bn_linha][bn_coluna];
                     break;
                     case 2:
-                    esc_pc = esc_pc +1;
                     poltrona_A = new int[esc_pc][period][pa_linhas][pa_coluna];
                     poltrona_B = new int[esc_pc][period][pb_linha][pb_coluna];
                     frisa = new int[esc_pc][period][frisa_ac][frisa_id];
@@ -82,7 +93,6 @@ public class colab {
                     balcao_nobre = new int[esc_pc][period][bn_linha][bn_coluna];
                     break;
                     case 3:
-                    esc_pc = esc_pc +1;
                     poltrona_A = new int[esc_pc][period][pa_linhas][pa_coluna];
                     poltrona_B = new int[esc_pc][period][pb_linha][pb_coluna];
                     frisa = new int[esc_pc][period][frisa_ac][frisa_id];
@@ -105,7 +115,6 @@ public class colab {
                 esc_turn = ler.nextInt();
                 switch (esc_turn) {
                     case 1:
-                    esc_turn = esc_turn + 1;
                     poltrona_A = new int[esc_pc][esc_turn][pa_linhas][pa_coluna];
                     poltrona_B = new int[esc_pc][esc_turn][pb_linha][pb_coluna];
                     frisa = new int[esc_pc][esc_turn][frisa_ac][frisa_id];
@@ -113,7 +122,6 @@ public class colab {
                     balcao_nobre = new int[esc_pc][esc_turn][bn_linha][bn_coluna];
                         break;
                     case 2:
-                    esc_turn = esc_turn + 1;
                     poltrona_A = new int[esc_pc][esc_turn][pa_linhas][pa_coluna];
                     poltrona_B = new int[esc_pc][esc_turn][pb_linha][pb_coluna];
                     frisa = new int[esc_pc][esc_turn][frisa_ac][frisa_id];
@@ -121,7 +129,6 @@ public class colab {
                     balcao_nobre = new int[esc_pc][esc_turn][bn_linha][bn_coluna];
                         break;
                     case 3:
-                    esc_turn = esc_turn + 1;
                     poltrona_A = new int[esc_pc][esc_turn][pa_linhas][pa_coluna];
                     poltrona_B = new int[esc_pc][esc_turn][pb_linha][pb_coluna];
                     frisa = new int[esc_pc][esc_turn][frisa_ac][frisa_id];
@@ -144,15 +151,13 @@ public class colab {
                     case 1:
                     System.out.println("Poltronas disponíveis: ");
 
-                    for (int pc = 0; pc < poltrona_A.length; pc++) {
-                        for (int turn = 0; turn < poltrona_A[pc].length; turn++) {
-                            for(int linh = 0; linh < poltrona_A[pc][turn].length; linh++){
-                                for(int act = 0; act < poltrona_A[pc][turn][linh].length; act++){
-                                    System.out.println(act);
-                                    System.out.println();
+                    for (int i = 0; i < poltrona_A.length; i++) {
+                        for (int j = 0; j < poltrona_A[i].length; j++) {
+                            for (int k = 0; k < poltrona_A[i][j].length; k++) {
+                                for (int l = 0; l < poltrona_A[i][j][k].length; l++) {
+                                    System.out.println("Elemento em [" + i + "][" + j + "][" + k + "][" + l + "]: " + poltrona_A[i][j][k][l]);
                                 }
                             }
-
                         }
                     }
                     break;
